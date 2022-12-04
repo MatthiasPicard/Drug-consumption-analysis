@@ -22,3 +22,13 @@ For our project, we used streamlit as well as streamlit-option-menu to develop t
 pip install streamlit  
 pip install streamlit-option-menu  
 
+# Running the website
+
+If you want to run the website, you need to go to your command prompt and access to the Streamlit folder you downloaded in this Github, you can do so by using the cd command.  Like .> <ins>cd *absolute path to the folder*</ins>
+
+Once you are there, type the following :   
+**python -m streamlit run menu.py**  
+  
+Just typing *streamlit run menu.py* can work but the above one is sure to work.  
+
+Your default browser will then open the website locally on your device. 
