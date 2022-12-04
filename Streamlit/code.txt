@@ -1,0 +1,75 @@
+fig, ax = plt.subplots(nrows=3, ncols=2, figsize=[20, 25])
+    plt.suptitle('Distribution des données sur les informations personnelles', fontsize=30, x=0.5, y=1.05,
+                 weight='bold', c="#2A2A2A")
+    sns.barplot(x=df_analyse["Ethnicity"].value_counts().index,
+                y=df_analyse["Ethnicity"].value_counts() * 100 / len(df_analyse), ax=ax[0, 0],
+                palette=["#8F8FEF", "#D2D2F9"])
+    ax[0, 0].set_title("Ethnicité des interrogés", fontsize=20)
+    ax[0, 0].yaxis.grid(color='gray')
+    ax[0, 0].set_axisbelow(True)
+    for p in ax[0, 0].patches:
+        txt = str(p.get_height().round(2)) + '%'
+        txt_x = (2 * p.get_x() + p.get_width()) / 2
+        txt_y = p.get_height()
+        ax[0, 0].text(txt_x, txt_y, txt, size=16, ha='center')
+
+    sns.barplot(x=df_analyse["Age"].value_counts().index, y=df_analyse["Age"].value_counts() * 100 / len(df_analyse),
+                ax=ax[0, 1], palette=sns.color_palette("flare"))
+    ax[0, 1].legend()
+    ax[0, 1].set_title("Repartition des interrogés par tranches d'âge", fontsize=20)
+    ax[0, 1].yaxis.grid(color='gray')
+    ax[0, 1].set_axisbelow(True)
+    for p in ax[0, 1].patches:
+        txt = str(p.get_height().round(2)) + '%'
+        txt_x = (2 * p.get_x() + p.get_width()) / 2
+        txt_y = p.get_height()
+        ax[0, 1].text(txt_x, txt_y, txt, size=16, ha='center')
+
+    ax[1, 0].pie(df_analyse["Gender"].value_counts(), labels=df_analyse["Gender"].value_counts().index,
+                 colors=sns.color_palette('pastel'), autopct='%.0f%%')
+    ax[1, 0].set_title("Proportion des genres dans le dataset", fontsize=20)
+
+    ax[1, 1].pie(df_analyse["Country"].value_counts(), labels=df_analyse["Country"].value_counts().index,
+                 colors=sns.color_palette('pastel'), autopct='%.0f%%')
+    ax[1, 1].set_title("Proportion des pays d'origine de chaques personnes", fontsize=20)
+
+    ax[2, 0].pie(df_analyse["Education"].value_counts(), labels=df_analyse["Education"].value_counts().index,
+                 colors=sns.color_palette('pastel'), autopct='%.0f%%')
+    ax[2, 0].set_title("Niveau d'éducation des interrogés", fontsize=20)
+
+    ax[2, 1].axis("off")
+    plt.tight_layout()
+    plt.subplots_adjust(left=0.1,
+                        bottom=0,
+                        right=0.9,
+                        top=1,
+                        wspace=0.3,
+                        hspace=0.25)
+    st.pyplot(fig)
+    plt.savefig('Distribution des données.png', bbox_inches='tight')
+
+    
+sns.set_style("darkgrid")
+fig, ax = plt.subplots(nrows=3, ncols=3, figsize=[20, 25])
+    plt.suptitle('Distribution des données sur les informations personnelles', fontsize=30, x=0.5, y=1.05,
+                 weight='bold', c="#2A2A2A")
+    for col, i in zip(personality, range(7)):
+        sns.histplot(x=df_analyse[col], kde=True, ax=ax[i // 3, i % 3], color="#1F6DB2", stat="proportion")
+        ax[i // 3, i % 3].set_title(f"Scores repartition in the {col} test", fontsize=15)
+
+    ax[2, 1].axis("off")
+    ax[2, 2].axis("off")
+    plt.tight_layout()
+    plt.subplots_adjust(left=0.05,
+                        bottom=0,
+                        right=0.95,
+                        top=1,
+                        wspace=0.1,
+                        hspace=0.1)
+    st.pyplot(fig)
+    plt.savefig('Distribution des données 2.png', bbox_inches='tight')
+
+
+
+
+
