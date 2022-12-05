@@ -1,0 +1,10 @@
+numpy  
+matplotlib  
+seaborn  
+pandas  
+scipy  
+sklearn  
+category_encoders  
+xgboost  
+streamlit  
+streamlit-option-menu  
