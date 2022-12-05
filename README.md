@@ -4,13 +4,19 @@ As part of our project for <ins>**Python for Data Analysis**</ins>, we decided t
 
 # Necessary installations
 
-In your command prompt, run the following command : **pip install -r requirement.txt**  
+In your command prompt, go to the folder of the zip file you downloaded in the Github :  
+cd Drug-consuption-analysis  
+
+and then run the following command :  
+**pip install -r requirement.txt**  
 
 This will do all the necessary pip installations so that you can run the notebook or the website.
 
 # Running the website
 
-If you want to run the website, you need to go to your command prompt and access to the Streamlit folder you downloaded in this Github, you can do so by using the cd command.  Like .> <ins>cd *absolute path to the folder*</ins>
+If you want to run the website, you need to go to your command prompt and access to the Streamlit folder you downloaded in this Github :  
+  
+cd Drug-consuption-analysis/Streamlit
 
 Once you are there, type the following :   
 **python -m streamlit run menu.py**  
