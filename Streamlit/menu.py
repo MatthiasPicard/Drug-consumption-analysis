@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     elif selected == "Analyse bivariée":
         a_b.empty()
-        Analyse_Bivariée.text(a_b)
+        Analyse_Bivariée.text(a_b, dataset, columns)
 
     elif selected == "Machine Learning":
         ml.empty()

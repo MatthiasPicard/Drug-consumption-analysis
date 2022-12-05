@@ -1,6 +1,49 @@
 from menu import *
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import plotly.express as px
 
-def text(placeholder):
+#Fonction heatmap
+
+def heatmap(dataset, analyse_column, columns, method = 'heatmap', cmap = "coolwarm"):
+
+    fig, ax = plt.subplots(figsize = [25,12])
+
+    analyse = sorted(list(dataset[f'{analyse_column}'].unique()), key = str)
+
+    matrix = [[0]*len(columns) for i in range(len(analyse))]
+    heatmap = np.array(matrix)
+
+    for i in range(dataset.shape[0]):
+        for k, obj in enumerate(columns):
+          # 12 is first instance of drug in columns
+          # this test is if columns = drugs
+          if dataset.iloc[i, k+12] in [5,6]:
+            heatmap[analyse.index(dataset.iloc[i,list(dataset.columns).index(f'{analyse_column}')]), k] += 1
+
+    if method == 'barplot' :
+        matrix= []
+        for i in range(heatmap.shape[1]):
+            for j in range(heatmap.shape[0]):
+              line = [columns[i], heatmap[j,i], analyse[j]]
+              matrix.append(line)
+        dataframe = pd.DataFrame(matrix, columns = ['x', 'y', f"{analyse_column}"])
+        #sns.barplot(data = dataframe, x = 'x', y = 'y', hue = analyse_column)
+        fig = px.bar(dataframe, x = 'x', y = 'y', color = analyse_column)
+    if method == 'heatmap' :
+        #sns.heatmap(heatmap, cmap = cmap, linewidths = 0.5, annot= True, annot_kws = {'size':10}, square = True, fmt = 'g')
+        fig = px.imshow(heatmap, x=columns, y =analyse)
+        fig.update_traces(text=heatmap, texttemplate="%{text}")
+        ax.set_yticklabels(analyse, rotation = 0)
+        ax.set_xticklabels(columns, rotation = 90)
+    return fig
+
+
+
+def text(placeholder, dataset, columns):
+
+    perso, personality, drugs = columns
     with placeholder.container():
         st.title("Analyse bivariée entre données et target et corrélations")
         st.write("\nDans cette partie, nous allons compléter notre analyse univariée en comparant les variables avec"
@@ -16,7 +59,10 @@ def text(placeholder):
                  " moins d'une semaine, puisque ce sont ces personne que nous inclurons dans notre target.")
         st.write("\n")
 
-        st.image('Images/ana-bi/Répartition 1.png')
+        g = heatmap(dataset, 'Age', drugs, cmap="crest")
+        st.subheader("**Répartition des personnes ayant consommées de la drogue il y a moins d'une semaine selon les tranches d'âges**")
+        st.plotly_chart(g)
+        #st.image('Images/ana-bi/Répartition 1.png')
         st.write("\nLa heatmap ci-dessus est en accord avec les premières observations de l'analyse univariée"
                  " (sur-représentation des \"jeunes\" dans le dataset). Même en prenant en compte ce biais dans "
                  "les données, on ne distingue pas de changement de tendance quand on \"descend\" dans la heatmap.")
@@ -30,7 +76,11 @@ def text(placeholder):
 
         st.image('Images/ana-bi/Répartition 3.png')
 
-        st.image('Images/ana-bi/Répartition 4.1.png')
+        g = heatmap(dataset, 'Gender', drugs, cmap="crest", method='barplot')
+        st.subheader(
+            "**Répartition des personnes ayant consommées de la drogue il y a moins d'une semaine selon les tranches d'âges**")
+        st.plotly_chart(g)
+        #st.image('Images/ana-bi/Répartition 4.1.png')
         st.write("\nLa répartiton des hommes et des femmes est quasiment équivalente dans le dataset, mais on constate"
                  " que les hommes sont nettement plus nombreux à avoir consommé des drogues illégales il y a moins "
                  "d'une semaine que les femmes. Le genre semble être un critère discriminant important pour notre "
