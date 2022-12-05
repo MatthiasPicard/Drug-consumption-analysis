@@ -8,23 +8,16 @@ Our Streamlit contains all the graphs that we created (data analysis and model) 
 
 The notebook contains all the codes that generated our graphs and our results.
 
-# Necessary installations
+# Necessary installations 
 
-In your command prompt, go to the folder of the zip file you downloaded in the Github :  
-cd Drug-consuption-analysis  
-
-and then run the following command :  
+In the command prompt, go to your folder and run the following command:  
 ```pip install -r requirement.txt```  
 
 This will do all the necessary pip installations so that you can run the notebook or the website.
 
 # Running the website
 
-If you want to run the website, you need to go to your command prompt and access to the Streamlit folder you downloaded in this Github :  
-  
-cd Drug-consuption-analysis/Streamlit
-
-Once you are there, type the following :   
+In the command prompt, go to the Streamlit folder and run the following command:   
 ```python -m streamlit run menu.py```
   
 Just typing *streamlit run menu.py* can work but the above one is sure to work.  
