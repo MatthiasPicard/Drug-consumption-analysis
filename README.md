@@ -14,7 +14,7 @@ In your command prompt, go to the folder of the zip file you downloaded in the G
 cd Drug-consuption-analysis  
 
 and then run the following command :  
-**pip install -r requirement.txt**  
+```pip install -r requirement.txt```  
 
 This will do all the necessary pip installations so that you can run the notebook or the website.
 
@@ -25,7 +25,7 @@ If you want to run the website, you need to go to your command prompt and access
 cd Drug-consuption-analysis/Streamlit
 
 Once you are there, type the following :   
-**python -m streamlit run menu.py**  
+```python -m streamlit run menu.py```
   
 Just typing *streamlit run menu.py* can work but the above one is sure to work.  
 
