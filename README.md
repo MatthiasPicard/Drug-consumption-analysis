@@ -4,23 +4,9 @@ As part of our project for <ins>**Python for Data Analysis**</ins>, we decided t
 
 # Necessary installations
 
-## For notebook
+In your command prompt, run the following command : **pip install -r requirement.txt**  
 
-pip install numpy  
-pip install matplotlib  
-pip install seaborn  
-pip install pandas  
-pip install scipy  
-pip install sklearn  
-pip install category_encoders  
-pip install xgboost  
-
-## For website
-
-For our project, we used streamlit as well as streamlit-option-menu to develop the web part of our project.
-
-pip install streamlit  
-pip install streamlit-option-menu  
+This will do all the necessary pip installations so that you can run the notebook or the website.
 
 # Running the website
 
