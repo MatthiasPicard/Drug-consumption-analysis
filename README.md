@@ -23,3 +23,4 @@ In the command prompt, go to the Streamlit folder and run the following command:
 Just typing *streamlit run menu.py* can work but the above one is sure to work.  
 
 Your default browser will then open the website locally on your device. 
+We experienced some issues while executing the website on another computer: the datasets and the graph linking gender and drugs in the bivariate analysis were not correctly displayed.
